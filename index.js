@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT;
+const placesController = require("./controllers/places_controller");
+
+app.use("/places", placesController);
 
 app.get("/", (req, res) => {
   res.send("Hello world!");
