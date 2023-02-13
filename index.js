@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res.status(404).send("<h1>404 Page</h1>");
+  res.status(404).send("Error404");
 });
 
 app.listen(PORT, () => {
