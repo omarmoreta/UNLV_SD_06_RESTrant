@@ -10,11 +10,11 @@ app.engine("jsx", createViewsEngine);
 app.use("/places", placesController);
 
 app.get("/", (req, res) => {
-  res.send("Home");
+  res.status(200).render("Home");
 });
 
 app.get("*", (req, res) => {
-  res.status(404).send("Error404");
+  res.status(404).render("Error404");
 });
 
 app.listen(PORT, () => {
