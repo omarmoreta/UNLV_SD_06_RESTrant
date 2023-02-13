@@ -1,14 +1,16 @@
 require("dotenv").config();
 const express = require("express");
-
 const app = express();
 const PORT = process.env.PORT;
 const placesController = require("./controllers/places_controller");
+const createViewsEngine = require("express-react-views").createEngine();
 
+app.set("view engine", "jsx");
+app.engine("jsx", createViewsEngine);
 app.use("/places", placesController);
 
 app.get("/", (req, res) => {
-  res.send("Hello world!");
+  res.send("Home");
 });
 
 app.get("*", (req, res) => {
