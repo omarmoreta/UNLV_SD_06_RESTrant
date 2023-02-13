@@ -1,6 +1,7 @@
-const express = require("express");
-const app = express();
 require("dotenv").config();
+const express = require("express");
+
+const app = express();
 const PORT = process.env.PORT;
 const placesController = require("./controllers/places_controller");
 
