@@ -5,10 +5,13 @@ const Home = () => {
     return(
         <Default>
             <main>
-                <h1>HOME</h1>
-                <a href="/places">
+                <h1>RESTrant</h1>
+                <div className="container">
+                    <img src="/images/burger.jpg" alt="A table with plates of food" />
+                </div>                           
+                <a id="placesBtn" href="/places" >
                     <button type="button" className="btn btn-primary">Places Page</button>
-                </a>
+                </a>                             
             </main>
         </Default>
     )

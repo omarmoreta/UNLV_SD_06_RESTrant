@@ -24,6 +24,6 @@
     "react": "^18.2.0"
   },
   "nodemonConfig": {
-    "ext": "js,html,json,jsx,mjs"
+    "ext": "js,html,json,jsx,mjs,css"
   }
 }
