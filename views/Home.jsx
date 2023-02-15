@@ -6,6 +6,9 @@ const Home = () => {
         <Default>
             <main>
                 <h1>HOME</h1>
+                <a href="/places">
+                    <button type="button" className="btn btn-primary">Places Page</button>
+                </a>
             </main>
         </Default>
     )

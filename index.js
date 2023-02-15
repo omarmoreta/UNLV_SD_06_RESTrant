@@ -8,6 +8,7 @@ const createViewsEngine = require("express-react-views").createEngine();
 app.set("view engine", "jsx");
 app.engine("jsx", createViewsEngine);
 app.use("/places", placesController);
+app.use(express.static("public"))
 
 app.get("/", (req, res) => {
   res.status(200).render("Home");
