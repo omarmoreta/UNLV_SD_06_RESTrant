@@ -6,12 +6,14 @@ const PORT = process.env.PORT;
 const placesController = require("./controllers/places_controller");
 const createViewsEngine = require("express-react-views").createEngine();
 
+// MIDDLEWARE
 app.set("view engine", "jsx");
 app.engine("jsx", createViewsEngine);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
 
+// CONTROLLER
 app.use("/places", placesController);
 
 app.get("/", (req, res) => {
