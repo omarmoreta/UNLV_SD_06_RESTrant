@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const methodOverride = require("method-override");
 const app = express();
 const PORT = process.env.PORT;
 const placesController = require("./controllers/places_controller");
@@ -9,6 +10,7 @@ app.set("view engine", "jsx");
 app.engine("jsx", createViewsEngine);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(methodOverride("_method"));
 
 app.use("/places", placesController);
 
