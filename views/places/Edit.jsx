@@ -1,16 +1,16 @@
 const React = require("react")
 const Default = require("../Default")
 
-const Edit = ({ place }) => {
+const Edit = ({ place, id }) => {
     return (
         <Default>
             <main>
                 <h1>Edit Places</h1>
-                <form method="POST" action={`/places/${ place.id }?_method=PUT`}>
+                <form method="POST" action={`/places/${ id }?_method=PUT`}>
                     <div>
                         <div className="form-group col">
                             <label htmlFor="name">Place Name</label>
-                            <input id="name" name="name" dafaultValue={ place.name } required/>
+                            <input id="name" name="name" defaultValue={ place.name } required/>
                         </div>
                         <div className="form-group col">
                             <label htmlFor="pic">Place Picture</label>
