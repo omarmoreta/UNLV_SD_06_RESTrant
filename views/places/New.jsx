@@ -5,7 +5,7 @@ const New = () => {
     return (
         <Default>
             <main>
-                <h1>PLACES NEW PAGE</h1>
+                <h1>Add a New place</h1>
             </main>
         </Default>
     )
