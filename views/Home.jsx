@@ -4,8 +4,8 @@ const Default = require("./Default")
 const Home = () => {
     return(
         <Default>
-            <main>
-                <h1>RESTrant</h1>
+            <h1>RESTrant</h1>
+            <main>                
                 <div className="container">
                     <img src="/images/burger.jpg" alt="A table with plates of food" />
                 </div>                           
