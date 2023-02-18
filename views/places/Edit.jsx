@@ -4,8 +4,8 @@ const Default = require("../Default")
 const Edit = ({ place, id }) => {
     return (
         <Default>
-            <main>
-                <h1>Edit Places</h1>
+            <h1>Edit Places</h1>
+            <main>                
                 <form method="POST" action={`/places/${ id }?_method=PUT`}>
                     <div>
                         <div className="form-group col-sm-6 col-md-4 col-lg-3">
