@@ -1,10 +1,10 @@
 const React = require("react")
 const Default = require("../Default")
 
-const New = ({ message, reqBody }) => {
+const New = ({ message, body }) => {
     let error, place = ""
     if (message) {
-        place = reqBody
+        place = body
         error = (
             <h4 className="alert alert-danger">{ message }</h4>
         )
@@ -42,7 +42,7 @@ const New = ({ message, reqBody }) => {
                             className="form-control" 
                             id="founded" 
                             name="founded" 
-                            defaultValue={place.founded} />
+                            defaultValue={new Date().getFullYear()} />
                     </div>
                     <div className="text-center">
                         <input className="btn btn-primary mt-2 mb-2" type="submit" value="Add Place" />

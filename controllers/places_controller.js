@@ -1,50 +1,53 @@
 const router = require("express").Router();
 const db = require("../models");
 
-router.get("/", (req, res) => {
-  db.Place.find()
-    .then((places) => {
-      res.render("places/index", { places });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.render("error404");
-    });
+router.get("/", async (req, res) => {
+  try {
+    const places = await db.Place.find();
+    res.status(200).render("places/index", { places });
+  } catch (err) {
+    console.log(err);
+    res.status(404).render("error404");
+  }
 });
 
-router.post("/", (req, res) => {
-  let reqBody = req.body
-  db.Place.create(reqBody)
-    .then(() => {
-      res.redirect("/places");
-    })
-    .catch((err) => {
-      if (err && err.name == "ValidationError") {
-        let message = "Validation Error: ";
-        for (let field in err.errors) {
-          message += `${field} was ${err.errors[field].value}. `;
-          message += `${err.errors[field].message}`;
-        }
-        res.render("places/new", { message, reqBody });
-      } else {
-        res.render("error404");
-      }
-    });
+router.post("/", async (req, res) => {
+  let body = req.body;
+  try {
+    if (!body.pic) {
+      body.pic = undefined;
+    }
+    if (!body.state) {
+      body.state = undefined;
+    }
+    if (!body.city) {
+      body.city = undefined;
+    }
+    await db.Place.create(body);
+    res.status(200).redirect("/places");
+  } catch (err) {
+    if (err && err.name == "ValidationError") {
+      console.log(err.erros);
+      let message = "Validation Error: ";
+      res.status(404).render("places/new", { message, body });
+    } else {
+      res.status(404).render("error404");
+    }
+  }
 });
 
 router.get("/new", (req, res) => {
-  res.render("places/new");
+  res.status(200).render("places/new");
 });
 
-router.get("/:id", (req, res) => {
-  db.Place.findById(req.params.id)
-    .then((place) => {
-      res.render("places/show", { place });
-    })
-    .catch((err) => {
-      console.log("err", err);
-      res.render("error404");
-    });
+router.get("/:id", async (req, res) => {
+  try {
+    let place = await db.Place.findById(req.params.id).populate("comments");
+    res.status(200).render("places/show", { place });
+  } catch (err) {
+    console.log("err", err);
+    res.status(404).render("error404");
+  }
 });
 
 router.put("/:id", (req, res) => {
@@ -59,8 +62,25 @@ router.get("/:id/edit", (req, res) => {
   res.send("GET edit form stub");
 });
 
-router.post("/:id/rant", (req, res) => {
-  res.send("GET /places/:id/rant stub");
+router.post("/:id/comment", async (req, res) => {
+  console.log(req.body);
+  req.body.rant = req.body.rant ? true : false;
+  try {
+    let place = await db.Place.findById(req.params.id);
+    place.save()
+    console.log({ place });
+    try {
+      let comment = await db.Comment.create(req.body);
+      console.log({ comment });
+      res.status(200).redirect(`/places/${req.params.id}`);
+    } catch (err) {
+      console.log(err);
+      res.status(404).render("error404");
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(404).render("error404");
+  }
 });
 
 router.delete("/:id/rant/:rantId", (req, res) => {

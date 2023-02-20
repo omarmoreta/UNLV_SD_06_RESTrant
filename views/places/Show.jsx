@@ -1,25 +1,43 @@
 const React = require("react")
 const Def = require("../Default")
 
-const Show = ({ place, id}) => {
+const Show = ({ place, id }) => {
+    let comments = (
+        <h3 className="inactive">
+            No comments yet!
+        </h3>
+    )
+    if (place.comments.length) {
+        comments = place.comments.map( (comment, index) => {
+            return (
+                <div key={ index } className="border">
+                    <h2 className="rant">
+                        { comment.rant ? "Rant! 😡" : "Rave! 😻" }
+                    </h2>
+                    <h4>{ comment.content }</h4>
+                    <h3>
+                        <strong>- { comment.author }</strong>
+                    </h3>
+                    <h4>Rating: { comment.stars }</h4>
+                </div>
+            )
+        })
+    }  
+    
     return (
         <Def>
             <main>
                 <div className="row">
                     <div className="col-sm-6">                    
                         <img className="img-fluid mt-4 px-5" src={ place.pic } alt={ place.name } />
-                        <h3 className="text-center mt-2">
-                            Located in { place.city }, { place.state }
-                        </h3>          
+                        <h3 className="text-center mt-2">Located in { place.city }, { place.state }</h3>          
                     </div>
                     <div className="col-sm-6 mt-3">
                         <h1>{ place.name }</h1>                        
                         <h2>Rating</h2>
                         <h2>Description</h2>
                         <h3>{place.showEstablished()}</h3>
-                        <h4 className="text-center">
-                            Serving { place.cuisines }
-                        </h4>              
+                        <h4 className="text-center">Serving { place.cuisines }</h4>              
                         <a href={ `/places/${ id }/edit` } className="col btn btn-warning">Edit</a>
                         <form action={ `/places/${ id }?_method=DELETE` } method="POST">
                             <button type="submit" className="btn btn-danger">Delete</button>
@@ -29,6 +47,7 @@ const Show = ({ place, id}) => {
                 <hr/>
                 <div> 
                     <h3 className="text-center">Comments</h3>
+                    { comments }
                     <h4 className="text-center">Got Your Own Rant or Rave?</h4>
                 </div> 
                 <div className="container">
