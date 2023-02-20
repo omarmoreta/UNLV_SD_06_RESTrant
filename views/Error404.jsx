@@ -10,8 +10,8 @@ const Error404 = () => {
                 <div className="container">                    
                     <img src="/images/404.jpg" alt="Upside down ice cream cone on the ground" />
                 </div>
-                <a id="placesBtn" href="/" >
-                    <button type="button" className="btn btn-primary">Home Page</button>
+                <a href="/" >
+                    <button type="button" className="mt-2 mb-2 btn btn-primary">Home Page</button>
                 </a>              
             </main>
         </Default>

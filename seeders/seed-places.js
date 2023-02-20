@@ -17,6 +17,22 @@ db.Place.create([
     pic: "/images/cafe.jpg",
     founded: 2001,
   },
+  {
+    name: "Diner 55",
+    city: "Mobile",
+    state: "AL",
+    cuisines: "Breakfast, BBQ",
+    pic: "/images/burger.jpg",
+    founded: 1955,
+  },
+  {
+    name: "King Tea",
+    city: "New York",
+    state: "NY",
+    cuisines: "Tea, Bakery",
+    pic: "/images/default.jpg",
+    founded: 1999,
+  },
 ])
   .then(() => {
     console.log("Seeder data Success!");

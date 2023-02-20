@@ -1,5 +1,6 @@
 const db = require("../models");
 
+// H-Thai-ML, Coding Cat Cafe, Diner 55, King Tea
 async function seed() {
   let place = await db.Place.findOne({ name: "H-Thai-ML" });
   let comment = await db.Comment.create({
